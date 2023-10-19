@@ -16,9 +16,9 @@
     {{--    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>--}}
     @vite(['resources/css/app.css','resources/js/app.js'])
     <!--Replace with your tailwind.css once created-->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
-
     <!-- Animation CSS-->
     <style>
         /* ----------------------------------------------
@@ -237,7 +237,7 @@
         <!--Left Col-->
         <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
             <h1 class="my-4 text-3xl md:text-5xl text-purple-800 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">
-                Silahkan arahkan wajah anda untuk melakukan absensi</h1>
+                Silahkan arahkan wajah anda untuk melakukan presensi</h1>
 
             <p class="text-blue-400 font-bold pb-8 lg:pb-6 text-center md:text-left fade-in">
                 <button type="button"
@@ -246,14 +246,16 @@
                 </button>
             </p>
             <div class="flex w-full justify-center md:justify-start pb-24 lg:pb-0 fade-in">
-
+            Test
             </div>
 
         </div>
 
         <!--Right Col-->
-        <div class="w-full xl:w-3/5 py-6 overflow-y-hidden">
-            <img class="w-5/6 mx-auto lg:mr-0 slide-in-bottom" src="{{asset('camera.png')}}">
+        <div class=" xl:w-3/5  overflow-y-hidden">
+            <img class="w-3/6  lg:mr-0 slide-in-bottom" src="{{asset('camera.png')}}" id="warn" hidden="true">
+            <video id="videoCam" ></video>
+
         </div>
 
         <!--Footer-->
@@ -265,12 +267,41 @@
 
 
 </div>
-
-
 <!-- jQuery if you need it
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 -->
 
+
 </body>
+<script>
+    const warning =document.getElementById('warn')
+    function openCam() {
+        let All_mediaDevices=navigator.mediaDevices
+        if (!All_mediaDevices || !All_mediaDevices.getUserMedia) {
+            console.log("getUserMedia() not supported.");
+            // TODO: Kurang warning di landing page kl semisal kamera sensor tdk terdeteksi
+            return;
+        }
+        All_mediaDevices.getUserMedia({
+            audio: true,
+            video: true
+        })
+            .then(function(vidStream) {
+                var video = document.getElementById('videoCam');
+                if ("srcObject" in video) {
+                    video.srcObject = vidStream;
+                } else {
+                    video.src = window.URL.createObjectURL(vidStream);
+                }
+                video.onloadedmetadata = function(e) {
+                    video.play();
+                };
+            })
+            .catch(function(e) {
+                console.log(e.name + ": " + e.message);
+            });
+    }
+Window.onload =openCam()
+</script>
 
 </html>

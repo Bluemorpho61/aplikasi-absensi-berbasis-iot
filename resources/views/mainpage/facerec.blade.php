@@ -213,16 +213,16 @@
                 <svg class="h-8 fill-current text-indigo-600 pr-2" xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 20 20">
                     <path
-                        d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z"/>
+                            d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z"/>
                 </svg>
                 APP
             </a>
 
             <div class="flex w-1/2 justify-end content-center">
                 <a
-                    href="{{route('login')}}"
-                    type="button"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        href="{{route('login')}}"
+                        type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                     Masuk Sebagai Admin
                 </a>
             </div>
@@ -230,14 +230,14 @@
         </div>
 
     </div>
-
     <!--Main-->
-    <div class="container pt-24 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
 
+    <h1 class="my-4 text-3xl md:text-5xl text-purple-800 font-bold  text-center slide-in-bottom-h1">
+        Silahkan arahkan wajah anda pada sensor kamera untuk melakukan presensi</h1>
+
+    <div class="container  px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <!--Left Col-->
         <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
-            <h1 class="my-4 text-3xl md:text-5xl text-purple-800 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">
-                Silahkan arahkan wajah anda untuk melakukan presensi</h1>
 
             <p class="text-blue-400 font-bold pb-8 lg:pb-6 text-center md:text-left fade-in">
                 <button type="button"
@@ -246,7 +246,7 @@
                 </button>
             </p>
             <div class="flex w-full justify-center md:justify-start pb-24 lg:pb-0 fade-in">
-            Test
+                Test
             </div>
 
         </div>
@@ -254,7 +254,7 @@
         <!--Right Col-->
         <div class=" xl:w-3/5  overflow-y-hidden">
             <img class="w-3/6  lg:mr-0 slide-in-bottom" src="{{asset('camera.png')}}" id="warn" hidden="true">
-            <video id="videoCam" ></video>
+            <video id="videoCam" class="h-80"></video>
 
         </div>
 
@@ -274,34 +274,36 @@
 
 </body>
 <script>
-    const warning =document.getElementById('warn')
+    const warning = document.getElementById('warn')
+
     function openCam() {
-        let All_mediaDevices=navigator.mediaDevices
+        let All_mediaDevices = navigator.mediaDevices
         if (!All_mediaDevices || !All_mediaDevices.getUserMedia) {
             console.log("getUserMedia() not supported.");
             // TODO: Kurang warning di landing page kl semisal kamera sensor tdk terdeteksi
             return;
         }
         All_mediaDevices.getUserMedia({
-            audio: true,
+            // audio: true,
             video: true
         })
-            .then(function(vidStream) {
+            .then(function (vidStream) {
                 var video = document.getElementById('videoCam');
                 if ("srcObject" in video) {
                     video.srcObject = vidStream;
                 } else {
                     video.src = window.URL.createObjectURL(vidStream);
                 }
-                video.onloadedmetadata = function(e) {
+                video.onloadedmetadata = function (e) {
                     video.play();
                 };
             })
-            .catch(function(e) {
+            .catch(function (e) {
                 console.log(e.name + ": " + e.message);
             });
     }
-Window.onload =openCam()
+
+    Window.onload = openCam()
 </script>
 
 </html>

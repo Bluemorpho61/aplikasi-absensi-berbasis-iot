@@ -17,7 +17,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('new-user')" :active="request()->routeIs('new-user')">
+                    <x-nav-link :href="route('test.kelsis')" :active="request()->routeIs('test.kelsis')">
                         Kelola Data Siswa
                     </x-nav-link>
                 </div>

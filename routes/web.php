@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//Untuk testing tampilan laman
-Route::get('/test/new-user',function (){
-   return view('admin.newuser');
-})->name('new-user');
+
+Route::name('test.')->prefix('test')->group(function (){
+    Route::get('kelola-siswa',[AdminController::class,'kelSiswa'])->name('kelsis');
+    Route::get('detail-siswa',[AdminController::class,'detailSiswa'])->name('detsis');
+    Route::get('/kelola-siswa/data-baru',[AdminController::class,'dataBaru'])->name('datbar');
+});
+
 
 require __DIR__.'/auth.php';

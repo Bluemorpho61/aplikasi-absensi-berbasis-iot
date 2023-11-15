@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@php use Illuminate\Support\Facades\URL; @endphp
+        <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -239,25 +240,23 @@
         <!--Left Col-->
         <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
 
-            <p class="text-blue-400 font-bold pb-8 lg:pb-6 text-center md:text-left fade-in">
-                <button type="button"
-                        class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                    Presensi dengan menggunakan RFID
-                </button>
-            </p>
-            <div class="flex w-full justify-center md:justify-start pb-24 lg:pb-0 fade-in">
-                Test
-            </div>
+
+            <canvas id="canvas"></canvas>
+            <img src="" id="photo" alt="foto">
 
         </div>
 
         <!--Right Col-->
         <div class=" xl:w-3/5  overflow-y-hidden">
             <img class="w-3/6  lg:mr-0 slide-in-bottom" src="{{asset('camera.png')}}" id="warn" hidden="true">
-            <video id="videoCam" class="h-80"></video>
 
+{{--            Untuk menyalakan webcam--}}
+{{--            <video id="video" class="h-80"></video>--}}
+{{--            --}}
+
+            <img src="http://192.168.43.240:81/stream" alt="esp" id="stream" class="h-80" onerror="">
+            <button class="bg-blue-600 p-2 rounded-2xl text-white" id="ambil-foto">Konfirmasi</button>
         </div>
-
         <!--Footer-->
         <div class="w-full pt-16 pb-6 text-sm text-center md:text-left fade-in">
             <a class="text-gray-500 no-underline hover:no-underline" href="#">&copy; App 2023</a>
@@ -270,40 +269,10 @@
 <!-- jQuery if you need it
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 -->
-
-
 </body>
-<script>
-    const warning = document.getElementById('warn')
 
-    function openCam() {
-        let All_mediaDevices = navigator.mediaDevices
-        if (!All_mediaDevices || !All_mediaDevices.getUserMedia) {
-            console.log("getUserMedia() not supported.");
-            // TODO: Kurang warning di landing page kl semisal kamera sensor tdk terdeteksi
-            return;
-        }
-        All_mediaDevices.getUserMedia({
-            // audio: true,
-            video: true
-        })
-            .then(function (vidStream) {
-                var video = document.getElementById('videoCam');
-                if ("srcObject" in video) {
-                    video.srcObject = vidStream;
-                } else {
-                    video.src = window.URL.createObjectURL(vidStream);
-                }
-                video.onloadedmetadata = function (e) {
-                    video.play();
-                };
-            })
-            .catch(function (e) {
-                console.log(e.name + ": " + e.message);
-            });
-    }
+<script type="text/javascript">
 
-    Window.onload = openCam()
 </script>
 
 </html>

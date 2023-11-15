@@ -6,8 +6,8 @@
     </x-slot>
 
     <div class="flex flex-row ml-24 space-x-8 mt-2 w-fit">
-        <a class="bg-green-500 w-64 h-28 rounded-2xl p-2 shadow-2xl" href="#">
-            <h3 class="text-right mr-3 text-white font-bold">Prensensi Hari ini</h3>
+        <a class="bg-green-500 w-64 h-28 rounded-2xl p-2 shadow-2xl" href="{{route('test.sispres')}}">
+            <h3 class="text-right mr-3 text-white font-bold">Presensi Hari ini</h3>
             <div class="flex ">
                 <svg class="w-16 h-16 text-gray-800 dark:text-white" aria-hidden="true"
                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
@@ -19,16 +19,16 @@
 
         </a>
 
-        <a class="bg-red-500 w-64 h-28 rounded-2xl p-2 shadow-2xl" href="#">
-            <h3 class="mr-3 text-right text-white font-bold">Tidak Melakukan Presensi</h3>
-            <div class="flex">
-                <img src="{{asset('missing.svg')}}" class="w-16 h-16" alt="ikon" >
-            <h4 class="ml-28 text-white text-4xl font-bold">0</h4>
-            </div>
-        </a>
+{{--        <a class="bg-red-500 w-64 h-28 rounded-2xl p-2 shadow-2xl" href="{{route('test.blmpres')}}">--}}
+{{--            <h3 class="mr-3 text-right text-white font-bold">Tidak Melakukan Presensi</h3>--}}
+{{--            <div class="flex">--}}
+{{--                <img src="{{asset('missing.svg')}}" class="w-16 h-16" alt="ikon" >--}}
+{{--            <h4 class="ml-28 text-white text-4xl font-bold">0</h4>--}}
+{{--            </div>--}}
+{{--        </a>--}}
 
-        <a class="bg-blue-500 w-64 h-28 rounded-2xl p-2 shadow-2xl" href="#">
-            <h3 class="mr-3 text-right text-white font-bold">Total Jumlah Siswa</h3>
+        <a class="bg-blue-500 w-64 h-28 rounded-2xl p-2 shadow-2xl" href="{{route('test.konfPres')}}">
+            <h3 class="mr-3 text-right text-white font-bold">Menunggu Konfirmasi</h3>
             <div class="flex">
                 <svg class="w-20 h-16 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                      fill="currentColor" viewBox="0 0 20 19">

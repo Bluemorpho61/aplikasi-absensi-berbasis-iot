@@ -1,13 +1,22 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis explicabo mollitia nisi possimus qui reprehenderit sint tempora tenetur? Autem itaque optio sit. Cum illo maxime provident quo, sed sunt veniam?
-</body>
-</html>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-2xl leading-tight text-gray-800">Tambah Data Absensi</h2>
+    </x-slot>
+
+    <div class="bg-white mt-2 p-3 shadow-2xl mx-5 rounded-2xl">
+        <div class="flex flex-row">
+            <video id="videoCam" class="w-1/4">
+            </video>
+            <div class="flex-col container">
+                <h3 class="font-bold text-2xl">Data Siswa</h3>
+                <input type="text" id="nama" placeholder="Nama">
+                <input type="text" placeholder="">
+            </div>
+        </div>
+    </div>
+<script src="{{URL::asset('js/startCam.js')}}"></script>
+</x-app-layout>
+
+
+
+
